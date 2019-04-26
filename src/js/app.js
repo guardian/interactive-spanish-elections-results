@@ -1,3 +1,3 @@
 import './cartogram.js'
-//import './municipalities.js'
+import './municipalities.js'
 

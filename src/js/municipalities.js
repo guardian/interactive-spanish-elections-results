@@ -167,7 +167,7 @@ const makeMap = empty  => {
 
 	let municipiosFeatures = topojson.feature(municipalities, municipalities.objects.municipios_4326).features
 
-	let winnersGroup = d3.select("#elections-municipalities").append('svg')
+	/*let winnersGroup = d3.select("#elections-municipalities").append('svg')
 	.attr('width', width)
 	.attr('height', height)
 
@@ -178,7 +178,7 @@ const makeMap = empty  => {
 	.attr('d', path)
 	.attr('id', d => 'm' + d.properties.NATCODE.substr(6,10))
 	.attr('municipality', d => d.properties.Texto)
-	.attr('class', 'municipality')
+	.attr('class', 'municipality')*/
 
 	let psoeGroup = d3.select("#elections-municipalities").append('svg')
 	.attr('width', width)
@@ -285,20 +285,20 @@ const makeMap = empty  => {
 	.attr('class', 'comunidad')
 
 
+
+
+
 	data.map(municipality =>{
 
 
 		let votedParties = municipality.results.filter(result => +result.party_votes_percentage > 0);
 
-		
-
 		let winner = votedParties.filter( p => +p.party_votes_percentage === d3.max(votedParties, party => +party.party_votes_percentage));
-
 
 		let party;
 
 
-		if(winner.length > 0)
+		/*if(winner.length > 0)
 		{
 
 			if(municipality.municipality_name == 'Madrid')console.log(municipality, winner)
@@ -321,7 +321,7 @@ const makeMap = empty  => {
 			winnersGroup.select("#m" + municipality.provincia_code + municipality.municipality_code)
 			.attr('class', 'nodata')
 			//console.log("NO VOTES YET ------>",municipality.municipality_name, municipality)
-		}
+		}*/
 
 
 		let psoe = municipality.results.find(result => result.party_code === "0096" || result.party_code === "0092" || result.party_code === "0093" || result.party_code === "0094" || result.party_code === "0097");
