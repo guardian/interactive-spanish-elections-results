@@ -5,65 +5,421 @@
 //@import "embed";
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
+
+
 .element-atom,
-.interactive-atom {
-    margin: 0 !important;
+.interactive-atom, body {
+
+	margin: 0px !important;
 }
 
-.Cs{
-	fill:#ED6300;
+.interactive-wrapper {
+	background-color: white;
+
+	@include mq(mobile){margin-left: 0px;}
+	@include mq(tablet){margin-left: 0px;}
+	@include mq(desktop){margin-left: 0px;}
+	@include mq(leftCol){margin-left: 160px;}
+	@include mq(wide){margin-left: 240px;}
+
+
 }
-.CDC, .PDC{
-	fill:#ffabdb;
+
+figure[data-alt="Gains and losses"] {
+
+	@include mq(mobile){margin-left: 0px;}
+	@include mq(tablet){margin-left: 0px;}
+	@include mq(desktop){margin-left: 0px;}
+	@include mq(leftCol){margin-left: 160px;}
+	@include mq(wide){margin-left: 240px;}
+
 }
-.EAJ-PNV{
-	fill:#91b52d;
+
+figure[data-alt="Small multiples"] {
+
+	@include mq(mobile){margin-left: 0px;}
+	@include mq(tablet){margin-left: 0px;}
+	@include mq(desktop){margin-left: 0px;}
+	@include mq(leftCol){margin-left: 160px;}
+	@include mq(wide){margin-left: 240px;}
+
 }
-.ECP, .UP{
-	fill:#951d7a;
-}
-.EH.Bildu{
-	fill:#004e3a;
-}
-.ERC-CATSÍ, .ERC{
-	fill:#f5be2c;
-}
-.GBAI{
-	fill:#ffe500;
-}
-.PCOE{
-	fill:#0cdc78;
-}
-.PODEMOS-COMPROMÍS-EUPV{
-	fill:#951d7a;
-}
-.PODEMOS-EN.MAREA-ANOVA-EU{
-	fill:#951d7a;
-}
-.PODEMOS-IU-EQUO{
-	fill:#951d7a;
-}
-.PP{
-	fill:#1896d7;
-}
-.PSOE{
-	fill:#c70000;
-}
-.CCa-PNC{
-	fill:#FFE500;
-}
-.VOX{
-	fill:#9C835F;
-}
-.PAC{
-	fill:#FFE6EC;
-}
-.null{
-	fill:#b5b5b5;
+
+.element-atom{
+	z-index:1000;
+	margin-left: 10px !important;
+	margin: 0px !important;
+	background-color: white;
+	max-width: 1260px;
+	background:white;
 }
 
 
-svg g{
+
+.elections-maps-wrapper{
+
+}
+
+.elections-map-wrapper{
+	position: relative;
+	float:left;
+
+}
+
+#elections-geographical{
+	margin-right: 50px;
+}
+
+.provincia{
+	fill:#efefef;
+}
+
+.provincia-hex{
+	fill-opacity:0;
+	fill:#efefef;
+	stroke:white;
+	stroke-width:0.5px;
+
+	@include mq(mobile) {
+		stroke-width:0px;
+	}
+
+	@include mq(tablet) {
+		stroke-width:0.5px;
+	}
+}
+.comunidad{
+	fill:none;
+	stroke:#DADADA;
+	pointer-events:none;
+	stroke-linejoin: round;
+	stroke-linecap:butt;
+
+	@include mq(mobile) {
+		stroke-width:1.2px;
+	}
+
+	@include mq(tablet) {
+		stroke-width:1px;
+	}
+}
+
+.comunidad-hex{
+	fill:none;
+	stroke:#FFF;
+	pointer-events:none;
+	stroke-linejoin: round;
+	stroke-linecap:butt;
+	
+	@include mq(mobile) {
+		stroke-width:1.2px;
+	}
+
+	@include mq(tablet) {
+		stroke-width:2px;
+	}
+}
+
+.cartogram-label-outline{
+	text-anchor: middle;
+	font-family: 'Guardian Text Sans Web', Arial, sans-serif;
+	stroke:#FFF;
+	stroke-opacity: 0.6;
+	stroke-width: 3px;
+	stroke-linejoin: round;
+	stroke-linecap:butt;
+	pointer-events: none;
+	font-size: 13px;
+
+	@include mq(mobile) {
+		display: none;
+	}
+
+	@include mq(tablet) {
+		display: block;
+	}
+}
+
+.cartogram-label{
+	text-anchor: middle;
+	font-family: 'Guardian Text Sans Web', Arial, sans-serif;
+	fill:#333;
+	pointer-events: none;
+	font-size: 13px;
+
+	@include mq(mobile) {
+		display: none;
+	}
+
+	@include mq(tablet) {
+		display: block;
+	}
+}
+
+.map-label{
+	text-anchor: middle;
+	font-family: 'Guardian Text Sans Web', Arial, sans-serif;
+	fill:#333;
+	pointer-events: none;
+	font-size:12px;
+}
+
+.cartogram-number{
+	text-anchor: start;
+	font-family: 'Guardian Text Sans Web', Arial, sans-serif;
+	font-size:14px;
+	font-weight:800;
+	fill:#333;
+}
+
+.map-label-circle{
+	fill:white;
+	stroke:black;
+	pointer-events:none;
+}
+
+.cover{
+	opacity: 1;
+	fill:#efefef;
+	stroke:#efefef;
+	stroke-width:0.5px;
+	pointer-events:none;
+}
+
+.tooltip{
+	min-width:210px;
+	padding:6px;
+	position:absolute;
+	z-index: 1011 !important;
+	font-size: 12px;
+	line-height: 16px;
+	font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+	background: #fff;
+	border: 1px solid #333;
+	display:none;
+	color: #333333;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border-top: 1px solid #333;
+	box-shadow: 2px 2px 0 0 #333;
+	pointer-events:none;
+
+	&.over{
+		display: block;
+	}
+
+
+}
+
+.tooltip-title{
+	font-size: 14px;
+	font-family: "Guardian Headline","Guardian Egyptian Web","Guardian Headline Full",Georgia,serif;
+	font-weight: bold;
+	color: #000;
+	font-weight: 900;
+	border-bottom: 1px solid #efefef;
+	padding-bottom: 15px;
+	margin-bottom:5px;
+
+	display: flex;
+	flex-direction: row;
+}
+
+.tooltip-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.tooltip-row:not(:last-child){
+	margin-bottom: 5px;
+	border-bottom: 1px solid #efefef;
+	height:20px;
+}
+
+.tooltip-province, .tooltip-party{
 	position:relative;
-	float: left;
+	flex: 90%;
+
 }
+
+.tooltip-deputies, .tooltip-deputies{
+	position:relative;
+	justify-content: flex-end;
+}
+
+#elections-key{
+	position:relative;
+	font-size: 14px;
+	line-height: 16px;
+	font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+	margin-bottom: 25px;
+	pointer-events:none;
+	min-height: 20px;
+	max-width: 860px;
+
+	@include mq(mobile) {
+		margin-bottom: 40px;
+	}
+
+	@include mq(tablet) {
+		margin-bottom: 10px;
+	}
+}
+
+#elections-cartogram #cartogram{
+	position:relative;
+}
+
+
+#elections-key svg{
+	width: 12px;
+	margin-right: 5px;
+}
+
+#elections-key ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#elections-key div{
+	text-decoration: none;
+	display: flex;
+	float: left;
+	width: auto;
+	height: 15px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	padding-left: 0 !important;
+}
+
+.elections-map-headline{
+
+	font-size: 21px;
+	font-family: "Guardian Headline","Guardian Egyptian Web","Guardian Headline Full",Georgia,serif;
+	font-weight: bold;
+	color: #000;
+	font-weight: 900;
+	padding-bottom: 15px;
+
+}
+
+.line{
+	fill: none;
+	stroke: #333;
+	stroke-width:1px;
+}
+
+
+[class="AHORA CANARIAS"]{fill:#00FCFC;}
+[class="ANDECHA ASTUR"]{fill:#B3B3B4;}
+[class="ARA-MES-ESQUERRA"]{fill:#B3B3B4;}
+[class="AVANT ADELANTE LOS VERDES"]{fill:#B3B3B4;}
+[class="AVANT-LOS VERDES"]{fill:#B3B3B4;}
+[class="AxSI"]{fill:#765432;}
+[class="BNG"]{fill:#B3B3B4;}
+[class="C 21"]{fill:#FF9999;}
+[class="CCa-PNC"]{fill:#FFE500;}
+[class="centrados"]{fill:#B3B3B4;}
+[class="C.Ex-C.R.Ex-P.R.Ex"]{fill:#00BBFF;}
+[class="CILU-LINARES"]{fill:#B3B3B4;}
+[class="CNV"]{fill:#B3B3B4;}
+[class="COMPROMÍS 2019"]{fill:#FF7F00;}
+[class="CpM"]{fill:#B3B3B4;}
+[class="Cs"]{fill:#ed6300;}
+[class="Cs"]{fill:#ed6300;}
+[class="Citizens"]{fill:#ed6300;}
+[class="CxG"]{fill:#B3B3B4;}
+[class="DP"]{fill:#DD6600;}
+[class="DPL"]{fill:#234567;}
+[class="EAJ-PNV"]{fill:#91b52d;}
+[class="EB"]{fill:#FF0099;}
+[class="EB"]{fill:#FF0099;}
+[class="EB"]{fill:#FF0099;}
+[class="ECP-GUANYEM EL CANVI"]{fill:#951d7a;}
+[class="EH Bildu"]{fill:#004e3a;}
+[class="ELAK/PCTE"]{fill:#F6F666;}
+[class="EL PI"]{fill:#77FF99;}
+[class="EN MAREA"]{fill:#1B71FC;}
+[class="ERC-SOBIRANISTES"]{fill:#f5be2c;}
+[class="ERC-CATSÍ"]{fill:#f5be2c;}
+[class="ERPV"]{fill:#f5be2c;}
+[class="F8"]{fill:#B3B3B4;}
+[class="FE de las JONS"]{fill:#CACACA;}
+[class="FIA"]{fill:#B3B3B4;}
+[class="FRONT REPUBLICÀ"]{fill:#00FF;}
+[class="GBAI"]{fill:#B3B3B4;}
+[class="IZAR"]{fill:#456789;}
+[class="IZQP"]{fill:#FF3300;}
+[class="JF"]{fill:#B3B3B4;}
+[class="JxCAT-JUNTS"]{fill:#056DA1;}
+[class="CDC"]{fill:#056DA1;}
+[class="+MAS+"]{fill:#B3B3B4;}
+[class="NA+"]{fill:#1896d7;}
+[class="NCa"]{fill:#c70000;}
+[class="PACMA"]{fill:#2BADBC;}
+[class="PACMA"]{fill:#2BADBC;}
+[class="PACT"]{fill:#B3B3B4;}
+[class="PCOE"]{fill:#234567;}
+[class="PCPA"]{fill:#345678;}
+[class="PCPC"]{fill:#223344;}
+[class="PCPC"]{fill:#223344;}
+[class="PCPE"]{fill:#00FF00;}
+[class="PCPE"]{fill:#00FF00;}
+[class="PCTC"]{fill:#B3B3B4;}
+[class="PCTE"]{fill:#012345;}
+[class="PCTE/ELAK"]{fill:#BBFF99;}
+[class="PCTG"]{fill:#66BBFF;}
+[class="PDSJE-UDEC"]{fill:#110011;}
+[class="PH"]{fill:#543210;}
+[class="P-LIB"]{fill:#000011;}
+[class="Podemos and coalitions"]{fill:#951d7a;}
+[class="PODEMOS"]{fill:#951d7a;}
+[class="PODEMOS-EUIB"]{fill:#951d7a;}
+[class="PODEMOS-EU-MAREAS EN COMÚN-EQUO"]{fill:#951d7a;}
+[class="PODEMOS-EUPV"]{fill:#951d7a;}
+[class="PODEMOS-IU-EQUO"]{fill:#951d7a;}
+[class="PODEMOS-IU-EQUO-AAeC"]{fill:#951d7a;}
+[class="PODEMOS-IU-EQUO-BATZARRE"]{fill:#951d7a;}
+[class="PODEMOS-IU-EQUO BERDEAK"]{fill:#951d7a;}
+[class="PODEMOS-IU LV CA-EQUO"]{fill:#951d7a;}
+[class="PODEMOS-IX-EQUO"]{fill:#951d7a;}
+[class="Podemos"]{fill:#951d7a;}
+[class="Podemos-EUIB"]{fill:#951d7a;}
+[class="Podemos-EU-MAREAS EN COMÚN-EQUO"]{fill:#951d7a;}
+[class="Podemos-EUPV"]{fill:#951d7a;}
+[class="Podemos-IU-EQUO"]{fill:#951d7a;}
+[class="Podemos-IU-EQUO-AAeC"]{fill:#951d7a;}
+[class="Podemos-IU-EQUO-BATZARRE"]{fill:#951d7a;}
+[class="Podemos-IU-EQUO BERDEAK"]{fill:#951d7a;}
+[class="Podemos-IU LV CA-EQUO"]{fill:#951d7a;}
+[class="Podemos-IX-EQUO"]{fill:#951d7a;}
+[class="PP"]{fill:#1896d7;}
+[class="PP"]{fill:#1896d7;}
+[class="PP"]{fill:#1896d7;}
+[class="PP-FORO"]{fill:#1896d7;}
+[class="PPSO"]{fill:#B3B3B4;}
+[class="PR+"]{fill:#B3B3B4;}
+[class="PRC"]{fill:#998877;}
+[class="PREPAL"]{fill:#11FF00;}
+[class="PSC"]{fill:#c70000;}
+[class="PSdeG-PSOE"]{fill:#c70000;}
+[class="PSE-EE (PSOE)"]{fill:#c70000;}
+[class="PSOE"]{fill:#c70000;}
+[class="PSOE"]{fill:#c70000;}
+[class="PUM+J"]{fill:#FF0000;}
+[class="PUM+J"]{fill:#FF0000;}
+[class="PUM+J"]{fill:#FF0000;}
+[class="PYLN"]{fill:#B3B3B4;}
+[class="RECORTES CERO-GV"]{fill:#002244;}
+[class="RECORTES CERO-GV-PCAS-TC"]{fill:#003366;}
+[class="RISA"]{fill:#987654;}
+[class="SOLIDARIA"]{fill:#B5B500;}
+[class="SOMOS REGIÓN"]{fill:#FF00BB;}
+[class="UDT"]{fill:#B3B3B4;}
+[class="UIG-SOM-CUIDES"]{fill:#99F9F9;}
+[class="UNIÓN REGIONALISTA"]{fill:#454545;}
+[class="VOU"]{fill:#B3B3B4;}
+[class="VOX"]{fill:#9C835F;}
+[class="Others"]{fill:#B3B3B4;}
+.nodata{fill:white;}
+.municipality{fill:#DADADA;}
