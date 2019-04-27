@@ -17,7 +17,7 @@ let parties = []
 
 const atomEl = $('.interactive-wrapper')
 
-let isMobile = window.matchMedia('(max-width: 860px)').matches;
+let isMobile = window.matchMedia('(max-width: 620px)').matches;
 let isDesktop = atomEl.getBoundingClientRect().width >= 1000;
 
 let maxWidth = 860;
@@ -235,9 +235,11 @@ function mouseover(d){
 		.html(dep.deputies)
 	})
 
+	d3.selectAll(".geo-map .provinces path").classed("over", true)
+	d3.select(".geo-map #p" + province['province-code']).classed("over", false)
+
 	tooltip.style('top', getPos(currentEvent).posY + 'px')
 	tooltip.style('left', getPos(currentEvent).posX + 'px')
-
 
 }
 function mouseout(){
@@ -247,6 +249,8 @@ function mouseout(){
 	d3.selectAll('.provincia-hex').style('fill-opacity',0)
 
 	tooltip.select('.tooltip-results').html('')
+
+	d3.selectAll(".geo-map .provinces path").classed("over", false)
 }
 
 function mousemove(){
