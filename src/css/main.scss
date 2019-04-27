@@ -2,7 +2,7 @@
 @import "fonts";
 @import "palette";
 // Uncomment for embeds
-//@import "embed";
+@import "embed";
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
@@ -13,21 +13,21 @@
 	margin: 0px !important;
 }
 
-.use-rules_true, #gu-small-multiples-box{
-	border-top: 0px !important;
-    border-bottom: 0px !important;
+.interactive-wrapper {
+	margin-left: 10px;
+	background-color: white;
 }
 
-.interactive-wrapper {
+.element-atom{
+	z-index:1000;
+	margin-left: 10px !important;
+	margin: 0px !important;
 	background-color: white;
-
-	@include mq(mobile){margin-left: 0px;}
-	@include mq(tablet){margin-left: 0px;}
-	@include mq(desktop){margin-left: 0px;}
-	@include mq(leftCol){margin-left: 160px;}
-	@include mq(wide){margin-left: 240px;}
-
-
+	max-width: 1260px;
+/*	border-top: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;*/
+	background:white;
+/*	padding-top:7px;*/
 }
 
 figure[data-alt="Gains and losses"] {
@@ -63,12 +63,13 @@ figure[data-alt="Small multiples"] {
 
 .elections-maps-wrapper{
 
+
 }
 
 .elections-map-wrapper{
 	position: relative;
 	float:left;
-
+	background: white;
 }
 
 #elections-geographical{
@@ -364,14 +365,14 @@ figure[data-alt="Small multiples"] {
 [class="PACMA"]{fill:#2BADBC;}
 [class="PACMA"]{fill:#2BADBC;}
 [class="PACT"]{fill:#B3B3B4;}
-[class="PCOE"]{fill:#234567;}
+[class="PCOE"]{fill:#FF9900;}
 [class="PCPA"]{fill:#345678;}
-[class="PCPC"]{fill:#223344;}
-[class="PCPC"]{fill:#223344;}
+[class="PCPC"]{fill:#00FF00;}
+[class="PCPC"]{fill:#00FF00;}
 [class="PCPE"]{fill:#00FF00;}
 [class="PCPE"]{fill:#00FF00;}
 [class="PCTC"]{fill:#B3B3B4;}
-[class="PCTE"]{fill:#012345;}
+[class="PCTE"]{fill:#FF9900;}
 [class="PCTE/ELAK"]{fill:#BBFF99;}
 [class="PCTG"]{fill:#66BBFF;}
 [class="PDSJE-UDEC"]{fill:#110011;}
@@ -415,7 +416,7 @@ figure[data-alt="Small multiples"] {
 [class="PUM+J"]{fill:#FF0000;}
 [class="PUM+J"]{fill:#FF0000;}
 [class="PYLN"]{fill:#B3B3B4;}
-[class="RECORTES CERO-GV"]{fill:#002244;}
+[class="RECORTES CERO-GV"]{fill:#999999;}
 [class="RECORTES CERO-GV-PCAS-TC"]{fill:#003366;}
 [class="RISA"]{fill:#987654;}
 [class="SOLIDARIA"]{fill:#B5B500;}
@@ -428,3 +429,7 @@ figure[data-alt="Small multiples"] {
 [class="Others"]{fill:#B3B3B4;}
 .nodata{fill:white;}
 .municipality{fill:#DADADA;}
+
+.over{
+	fill:#efefef;
+}
