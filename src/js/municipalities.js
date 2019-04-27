@@ -124,10 +124,10 @@ Promise.all(files
 					if(field[i + 1].length != 55)
 					{
 						municipality[0].results.push({
-							party_code:/*i,*/field[i],
-							party_acronym:/*i + 1,*/field[i + 1],
-							party_votes:/*i + 2,*/field[i + 2],
-							party_votes_percentage:/*i + 3*/field[i + 3]
+							party_code:field[i],
+							party_acronym:field[i + 1],
+							party_votes:field[i + 2],
+							party_votes_percentage:field[i + 3]
 						})
 					}
 					
@@ -135,8 +135,7 @@ Promise.all(files
 			}
 
 			data.push(municipality[0])
-
-			
+	
 		})
 	})
 	.then(d => {
