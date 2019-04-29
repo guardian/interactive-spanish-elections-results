@@ -5,6 +5,7 @@ import * as d3geo from 'd3-geo'
 import map from '../assets/admn1_admn2.json?123'
 import provincesVotesRaw from 'raw-loader!./../assets/Congreso_Abril_2019_Resultados por circuscripcion.csv'
 import electoralData from '../assets/electoral_data'
+import {event as currentEvent} from 'd3-selection';
 import { $ } from "./util"
 
 let d3 = Object.assign({}, d3B, d3Select, d3geo);
@@ -21,24 +22,29 @@ let mainComunidades = [
 
 let paths = [
 
-{"from":[-7.0896475056788, 40.43271083404107], "to":[-4.4036897738022915, 40.43271083404107]},
-{"from":[ -2.454628077533657, 43.47595745278307 ],"to":[ -2.454628077533657, 44.16995634597881 ]},
-{"from":[ 2.7202042248160696, 41.35490023929793 ],"to":[ 2.256503477338289, 41.377328003798894 ]},
-{"from":[ -4.667814675852475, 35.74605490215351 ],"to":[ -4.667814675852475, 36.51041049451024 ]},
-{"from":[ -7.910904739716214, 44.12414412990034 ],"to":[ -7.910904739716214, 43.74134749305692 ]}
+	{"from":[-7.0896475056788, 40.43271083404107], "to":[-4.4036897738022915, 40.43271083404107]},
+	{"from":[ -2.454628077533657, 43.47595745278307 ],"to":[ -2.454628077533657, 44.16995634597881 ]},
+	{"from":[ 2.7202042248160696, 41.35490023929793 ],"to":[ 2.256503477338289, 41.377328003798894 ]},
+	{"from":[ -4.667814675852475, 35.74605490215351 ],"to":[ -4.667814675852475, 36.51041049451024 ]},
+	{"from":[ -7.910904739716214, 44.12414412990034 ],"to":[ -7.910904739716214, 43.74134749305692 ]}
 
 ]
 
+let parties = []
+
 const atomEl = $('.interactive-wrapper')
 
-let isMobile = window.matchMedia('(max-width: 620px)').matches;
+let isMobile = window.matchMedia('(max-width: 860px)').matches;
 
 let width = isMobile ? atomEl.getBoundingClientRect().width : 300;
 let height = width;
 
+d3.select("#elections-geographical")
+.style("width", width + 'px')
+
 let tooltip = d3.select("#elections-geographical .tooltip")
 
-let padding = 80;
+let padding = 60;
 
 let svg = d3.select('#coropleth').append('svg')
 .attr('width', width)
@@ -60,6 +66,7 @@ let provincesMap = svg.append('g')
 .append('path')
 .attr('d', path)
 .attr('id', d => 'p' + String(d.properties.code).substr(4,5))
+.attr('class', 'province')
 
 
 provincesMap
@@ -122,11 +129,79 @@ electoralData.provinces.map(p => {
 
 	deputiesByProvince[provinceCode] = votesDummy;
 
+
 	let winner = votesDummy[0];
 
-	d3.select('#p' + p["province-code"]).attr('class', winner.party)
+
+	if(votesDummy[0] != undefined){
+		d3.select('#p' + p["province-code"]).attr('class', winner.party)
+	
+			let party = winner.party
+			let partyBeauty = party;
+
+			if(party == "PODEMOS-EUIB") partyBeauty = 'Podemos-EUIB';
+			if(party == "PODEMOS-EU-MAREAS EN COMÚN-EQUO") partyBeauty = 'Podemos-EU-MAREAS EN COMÚN-EQUO';
+			if(party == "PODEMOS-EUPV") partyBeauty = 'Podemos-EUPV';
+			if(party == "PODEMOS-IU-EQUO") partyBeauty = 'Podemos-IU-EQUO';
+			if(party == "PODEMOS-IU-EQUO-AAeC") partyBeauty = 'Podemos-IU-EQUO-AAeC';
+			if(party == "PODEMOS-IU-EQUO-BATZARRE") partyBeauty = 'Podemos-IU-EQUO-BATZARRE';
+			if(party == "PODEMOS-IU-EQUO BERDEAK") partyBeauty = 'Podemos-IU-EQUO BERDEAK';
+			if(party == "PODEMOS-IU LV CA-EQUO")partyBeauty = 'Podemos-IU LV CA-EQUO';
+			if(party == "PODEMOS-IX-EQUO" )partyBeauty = 'Podemos-IX-EQUO';
+			
+			if(party == "Cs") partyBeauty = 'Citizens';
+
+			let partyToKey = partyBeauty;
+
+			if(partyBeauty == 'Podemos-EUIB') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == 'Podemos-EU-MAREAS EN COMÚN-EQUO') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == 'Podemos-EUPV') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == 'Podemos-IU-EQUO') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == 'Podemos-IU-EQUO-AAeC') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == 'Podemos-IU-EQUO-BATZARRE') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == 'Podemos-IU-EQUO BERDEAK') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == 'Podemos-IU LV CA-EQUO') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == 'Podemos-IX-EQUO') partyToKey = 'Podemos and coalitions';
+			if(partyBeauty == "ECP-GUANYEM EL CANVI" ) partyToKey = 'Podemos and coalitions';
+
+
+			if(partyBeauty == 'PP-FORO') partyToKey = 'PP';
+
+			if(partyBeauty == "ERC-SOBIRANISTES") partyToKey = 'ERC'
+			if(partyBeauty == "ERC-CATSÍ") partyToKey = 'ERC'
+			if(partyBeauty == "ERPV") partyToKey = 'ERC'
+
+			if(partyBeauty == "JxCAT-JUNTS") partyToKey = 'JxCAT-JUNTS'
+			if(partyBeauty == "CDC") partyToKey = 'JxCAT-JUNTS'
+
+			if(partyBeauty == "PSC") partyToKey = "PSOE"
+			if(partyBeauty == "PSdeG-PSOE") partyToKey = "PSOE"
+			if(partyBeauty == "PSE-EE (PSOE)") partyToKey = "PSOE"
+			if(partyBeauty == "PSOE") partyToKey = "PSOE"
+			if(partyBeauty == "PSOE") partyToKey = "PSOE"
+
+
+			if(parties.indexOf(partyToKey) == -1){
+
+				parties.push(partyToKey)
+			}
+
+		}
 
 } )
+
+parties.sort();
+
+parties.map( party => {
+	d3.select('#elections-geographical #elections-key ul')
+	.append('div')
+	.html(
+		'<svg viewBox="0 0 11.9 11.8" class="' + party + '">' +
+		'<rect width="12" height="12"/>' +
+		'</svg>' +
+		'<div>' + party + '</div>'
+		)
+})
 
 
 /*svg.on("click", function() {
@@ -189,22 +264,32 @@ function mouseout(d){
 
 function mousemove(d){
 
-	let left = d3.mouse(this)[0] + padding;
-	let top = d3.mouse(this)[1]  + padding;
+	tooltip.style('top', getPos(currentEvent).posY + padding + 'px')
+	tooltip.style('left', getPos(currentEvent).posX + 'px')
+	
+}
 
-	tooltip.style('top',  top + 'px')
+
+function getPos(currentEvent){
+
+	let left = document.getElementById('elections-geographical').getBoundingClientRect().x;
+	let top = document.getElementById('coropleth').getBoundingClientRect().y;
 
 	let tWidth = +tooltip.style("width").split('px')[0]
+	let tHeight = +tooltip.style("height").split('px')[0]
 
-	if(left > width / 2)
-	{
-		tooltip.style('left', width - tWidth + 'px')
-	}
-	else{
-		tooltip.style('left', 0 + 'px')
+	let posX = 0;
+	let posY = currentEvent.clientY - top + padding
+
+	if(currentEvent.clientX - left > width /2){
+		posX += width - tWidth
 	}
 
-	
+	/*if(currentEvent.clientY - top > height /2){
+		posY -= tHeight + padding * 2
+	}*/
+
+	return {posX:posX, posY:posY}
 }
 
 function lngLatToArc(d, sourceName, targetName, bend){

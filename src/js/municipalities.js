@@ -10,7 +10,7 @@ import { $ } from "./util"
 
 let d3 = Object.assign({}, d3B, d3Select, d3geo);
 
-let width = 900;
+let width = 1260;
 let height = width;
 
 
@@ -18,6 +18,8 @@ let projection = d3.geoMercator()
 
 let path = d3.geoPath()
 .projection(projection)
+
+let percentages = []
 
 
 
@@ -82,7 +84,7 @@ let data = []
 
 Promise.all(files
 .map(file => {
-	fetch('<%= path %>/assets/TXMUNCO993n6g4p7f/' + file).then(response =>{
+	fetch('<%= path %>/assets/TXMUNCO99kojg2dng/' + file).then(response =>{
 		return response.ok ? response.text() : Promise.reject(response.status);
 	})
 	.then(text =>{
@@ -166,7 +168,7 @@ const makeMap = empty  => {
 
 	let municipiosFeatures = topojson.feature(municipalities, municipalities.objects.municipios_4326).features
 
-	/*let winnersGroup = d3.select("#elections-municipalities").append('svg')
+	let winnersGroup = d3.select("#elections-municipalities").append('svg')
 	.attr('width', width)
 	.attr('height', height)
 
@@ -177,9 +179,16 @@ const makeMap = empty  => {
 	.attr('d', path)
 	.attr('id', d => 'm' + d.properties.NATCODE.substr(6,10))
 	.attr('municipality', d => d.properties.Texto)
-	.attr('class', 'municipality')*/
+	.attr('class', 'municipality')
 
-	let psoeGroup = d3.select("#elections-municipalities").append('svg')
+	let comunidades = winnersGroup.append('g').selectAll('path')
+	.data(topojson.feature(map, map.objects.comunidades).features)
+	.enter()
+	.append('path')
+	.attr('d', path)
+	.attr('class', 'comunidad')
+
+	/*let psoeGroup = d3.select("#elections-municipalities").append('svg')
 	.attr('width', width)
 	.attr('height', height)
 
@@ -281,7 +290,7 @@ const makeMap = empty  => {
 	.enter()
 	.append('path')
 	.attr('d', path)
-	.attr('class', 'comunidad')
+	.attr('class', 'comunidad')*/
 
 
 
@@ -297,7 +306,7 @@ const makeMap = empty  => {
 		let party;
 
 
-		/*if(winner.length > 0)
+		if(winner.length > 0)
 		{
 
 			if(municipality.municipality_name == 'Madrid')console.log(municipality, winner)
@@ -320,10 +329,10 @@ const makeMap = empty  => {
 			winnersGroup.select("#m" + municipality.provincia_code + municipality.municipality_code)
 			.attr('class', 'nodata')
 			//console.log("NO VOTES YET ------>",municipality.municipality_name, municipality)
-		}*/
+		}
 
 
-		let psoe = municipality.results.find(result => result.party_code === "0096" || result.party_code === "0092" || result.party_code === "0093" || result.party_code === "0094" || result.party_code === "0097");
+		/*let psoe = municipality.results.find(result => result.party_code === "0096" || result.party_code === "0092" || result.party_code === "0093" || result.party_code === "0094" || result.party_code === "0097");
 		let psoePercentage = +psoe.party_votes_percentage / 100
 
 		if(psoe){
@@ -334,7 +343,7 @@ const makeMap = empty  => {
 		}
 
 
-		let pp = municipality.results.find(result => result.party_code === "0083" || result.party_code === "0084" || result.party_code === "0085" || result.party_code === "0086" || result.party_code === "0052");
+		let pp = municipality.results.find(result => result.party_code === "0083" || result.party_code === "0084" || result.party_code === "0085" || result.party_code === "0086" );
 		let ppPercentage = +pp.party_votes_percentage / 100
 
 		if(pp){
@@ -355,7 +364,7 @@ const makeMap = empty  => {
 			.attr('class' , 'PODEMOS')
 		}
 
-		let cs = municipality.results.find(result => result.party_code === "0022" || result.party_code === "0023" || result.party_code === "0052" );
+		let cs = municipality.results.find(result => result.party_code === "0022" || result.party_code === "0023"  );
 		let csPercentage = +cs.party_votes_percentage / 100
 
 		if(cs){
@@ -376,7 +385,17 @@ const makeMap = empty  => {
 			.attr('class' , 'VOX')
 		}
 
+		percentages.push(+psoe.party_votes_percentage)
+		percentages.push(+pp.party_votes_percentage)
+		percentages.push(+cs.party_votes_percentage)
+		percentages.push(+podemos.party_votes_percentage)
+		percentages.push(+vox.party_votes_percentage)*/
+
 		
 
 	})
+
+
+	console.log('max: ', d3.max(percentages))
 }
+

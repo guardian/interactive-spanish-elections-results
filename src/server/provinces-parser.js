@@ -2,7 +2,7 @@ import csvParse from 'csv-parse/lib/es5/sync'
 import csvStringify from 'csv-stringify/lib/es5/sync'
 import fs from "fs"
 
-const provincesVotesRaw = fs.readFileSync("./src/assets/TXTOTCO993n6g4p7f.csv")
+const provincesVotesRaw = fs.readFileSync("./src/assets/TXTOTCO99heq8a41c.csv")
 
 const provinces = csvParse(provincesVotesRaw,{"delimiter": ";","rtrim": true});
 

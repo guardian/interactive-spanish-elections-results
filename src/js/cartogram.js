@@ -17,10 +17,10 @@ let parties = []
 
 const atomEl = $('.interactive-wrapper')
 
-let isMobile = window.matchMedia('(max-width: 620px)').matches;
-let isDesktop = atomEl.getBoundingClientRect().width >= 1000;
+let isMobile = window.matchMedia('(max-width: 860px)').matches;
+let isDesktop = atomEl.getBoundingClientRect().width > 860;
 
-let maxWidth = 860;
+let maxWidth = 760;
 let maxHeight = maxWidth - 100;
 
 let width = !isDesktop ? atomEl.getBoundingClientRect().width : maxWidth;
@@ -195,7 +195,7 @@ electoralData.provinces.map(p => {
 parties.sort();
 
 parties.map( party => {
-	d3.select('#elections-key ul')
+	d3.select('#elections-cartogram #elections-key ul')
 	.append('div')
 	.html(
 		'<svg viewBox="0 0 11.9 11.8" class="' + party + '">' +
@@ -235,11 +235,12 @@ function mouseover(d){
 		.html(dep.deputies)
 	})
 
+	tooltip.style('top', getPos(currentEvent).posY + 'px')
+	tooltip.style('left', getPos(currentEvent).posX + 'px')
+
 	d3.selectAll(".geo-map .provinces path").classed("over", true)
 	d3.select(".geo-map #p" + province['province-code']).classed("over", false)
 
-	tooltip.style('top', getPos(currentEvent).posY + 'px')
-	tooltip.style('left', getPos(currentEvent).posX + 'px')
 
 }
 function mouseout(){
@@ -251,6 +252,7 @@ function mouseout(){
 	tooltip.select('.tooltip-results').html('')
 
 	d3.selectAll(".geo-map .provinces path").classed("over", false)
+
 }
 
 function mousemove(){

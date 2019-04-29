@@ -2,10 +2,56 @@
 @import "fonts";
 @import "palette";
 // Uncomment for embeds
-@import "embed";
+//@import "embed";
 // Uncomment for full screen (including immersive article main media)
 //@import "fullscreen";
 
+
+.content__main-column--interactive {
+& > p,& > h2,& > ul, & > sub {
+// strong {
+// background-color: $highlight_yellow;
+// box-shadow: 4px 0 0 $highlight_yellow, -4px 0 0 $highlight-yellow;
+// padding-bottom: .1em;
+// }
+max-width: 620px;
+@include mq(leftCol) {
+margin-left: 160px !important;
+}
+@include mq(wide) {
+margin-left: 240px !important;
+}
+}
+& > p {
+
+@include fs-textSans(3);
+
+margin-bottom: 40px;
+
+strong {
+background-color: none;
+box-shadow: none;
+}
+sub {
+bottom: 0px;
+font-size: 100%;
+font-family: "Guardian Headline", "Guardian Egyptian Web", Georgia;
+font-weight: 700;
+}
+}
+& > h2 {
+font-family: "Guardian Headline", "Guardian Egyptian Web", Georgia;
+font-size: 28px;
+line-height: 1.36;
+font-weight: 700;
+color: #333;
+margin-top: 36px;
+margin-bottom: 6px;
+@include mq($until: desktop) {
+font-size: 24px;
+}
+}
+}
 
 .element-atom,
 .interactive-atom, body {
@@ -14,7 +60,7 @@
 }
 
 .interactive-wrapper {
-	margin-left: 10px;
+	margin-left: 0px;
 	background-color: white;
 }
 
@@ -73,7 +119,7 @@ figure[data-alt="Small multiples"] {
 }
 
 #elections-geographical{
-	margin-right: 50px;
+	margin-right: 40px;
 }
 
 .provincia{
@@ -96,7 +142,7 @@ figure[data-alt="Small multiples"] {
 }
 .comunidad{
 	fill:none;
-	stroke:#DADADA;
+	stroke:#FFFFFF;
 	pointer-events:none;
 	stroke-linejoin: round;
 	stroke-linecap:butt;
@@ -261,7 +307,7 @@ figure[data-alt="Small multiples"] {
 	margin-bottom: 25px;
 	pointer-events:none;
 	min-height: 20px;
-	max-width: 860px;
+	max-width: 660px;
 
 	@include mq(mobile) {
 		margin-bottom: 40px;
@@ -348,6 +394,7 @@ figure[data-alt="Small multiples"] {
 [class="EN MAREA"]{fill:#1B71FC;}
 [class="ERC-SOBIRANISTES"]{fill:#f5be2c;}
 [class="ERC-CATSÍ"]{fill:#f5be2c;}
+[class="ERC"]{fill:#f5be2c;}
 [class="ERPV"]{fill:#f5be2c;}
 [class="F8"]{fill:#B3B3B4;}
 [class="FE de las JONS"]{fill:#CACACA;}
@@ -360,7 +407,7 @@ figure[data-alt="Small multiples"] {
 [class="JxCAT-JUNTS"]{fill:#056DA1;}
 [class="CDC"]{fill:#056DA1;}
 [class="+MAS+"]{fill:#B3B3B4;}
-[class="NA+"]{fill:#1896d7;}
+[class="NA+"]{fill:#FF1921;}
 [class="NCa"]{fill:#c70000;}
 [class="PACMA"]{fill:#2BADBC;}
 [class="PACMA"]{fill:#2BADBC;}
@@ -405,7 +452,7 @@ figure[data-alt="Small multiples"] {
 [class="PP-FORO"]{fill:#1896d7;}
 [class="PPSO"]{fill:#B3B3B4;}
 [class="PR+"]{fill:#B3B3B4;}
-[class="PRC"]{fill:#998877;}
+[class="PRC"]{fill:#FFABDB;}
 [class="PREPAL"]{fill:#11FF00;}
 [class="PSC"]{fill:#c70000;}
 [class="PSdeG-PSOE"]{fill:#c70000;}
@@ -428,8 +475,13 @@ figure[data-alt="Small multiples"] {
 [class="VOX"]{fill:#9C835F;}
 [class="Others"]{fill:#B3B3B4;}
 .nodata{fill:white;}
-.municipality{fill:#DADADA;}
+.municipality{fill:#FFFFFF;}
 
 .over{
 	fill:#efefef;
 }
+
+.province, .deputy{
+	fill:#efefef;
+}
+
